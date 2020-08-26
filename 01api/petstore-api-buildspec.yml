@@ -3,12 +3,9 @@ phases:
   install:
     commands:
       - cd 01api
-      - git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
-      - mkdir ~/.linuxbrew/bin
-      - ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin
-      - eval $(~/.linuxbrew/bin/brew shellenv)  
-      - brew tap aws/tap
-      - brew install aws-sam-cli
+      - pip install --user aws-sam-cli
+      - USER_BASE_PATH=$(python -m site --user-base)
+      - export PATH=$PATH:$USER_BASE_PATH/bin
       - sam package --template-file petstore-api.yaml
                                    --s3-bucket aws-codepipeline-bucket-experiments
                                    --s3-prefix api-code
