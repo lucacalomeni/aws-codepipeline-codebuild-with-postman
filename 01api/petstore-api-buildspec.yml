@@ -3,7 +3,7 @@ phases:
   install:
     commands:
       - cd 01api
-      - pip install --user aws-sam-cli
+      - pip3 install --user aws-sam-cli
       - USER_BASE_PATH=$(python -m site --user-base)
       - export PATH=$PATH:$USER_BASE_PATH/bin
       - sam package --template-file petstore-api.yaml
