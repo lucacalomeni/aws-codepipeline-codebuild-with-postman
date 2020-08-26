@@ -7,6 +7,7 @@ phases:
       
   build:
     commands:
+      - cd 01api
       - sam build -t petstore-api.yaml
 
   post_build:
