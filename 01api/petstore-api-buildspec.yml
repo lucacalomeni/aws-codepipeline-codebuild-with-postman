@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - cd 01api
+      - npm install -g brew
       - brew tap aws/tap
       - brew install aws-sam-cli
       - sam package --template-file petstore-api.yaml
