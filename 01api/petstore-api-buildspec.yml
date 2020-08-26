@@ -1,11 +1,16 @@
 version: 0.2
+
 phases:
   install:
+    runtime-versions:
+      python: 3.7
+      
+  build:
     commands:
-      - cd 01api
-      - pip3 install --user aws-sam-cli
-      - USER_BASE_PATH=$(python -m site --user-base)
-      - export PATH=$PATH:$USER_BASE_PATH/bin
+      - sam build
+
+  post_build:
+    commands:
       - sam package --template-file petstore-api.yaml
                                    --s3-bucket aws-codepipeline-bucket-experiments
                                    --s3-prefix api-code
