@@ -1,9 +1,18 @@
 version: 0.2
+
 phases:
   install:
+    runtime-versions:
+      python: 3.7
+      
+  build:
     commands:
       - cd 01api
-      - aws cloudformation package --template-file petstore-api.yaml
+      - sam build -t petstore-api.yaml
+
+  post_build:
+    commands:
+      - sam package --template-file petstore-api.yaml
                                    --s3-bucket aws-codepipeline-bucket-experiments
                                    --s3-prefix api-code
                                    --output-template-file petstore-api-output.yaml
